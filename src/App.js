@@ -17,10 +17,10 @@ function App() {
         <Navbar />
         <div class='app-wrapper-content'>
           <Routes>
-          <Route path='/dialogs' component={Dialogs} />
-          <Route path='/profile' component={Profile} />
-          <Route path='/music' component={Music} />
-          <Route path='/settings' component={Settings} />
+          <Route path='/dialogs/*' element={<Dialogs />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/music' element={<Music />} />
+          <Route path='/settings' element={<Settings />} />
           </Routes>
         </div>
       </div>
