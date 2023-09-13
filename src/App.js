@@ -8,8 +8,7 @@ import Settings from './components/Settings/Settings';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 
-
-function App() {
+const App = (props) => {
   return (
     <BrowserRouter>
       <div className='app-wrapper'>
@@ -17,14 +16,29 @@ function App() {
         <Navbar />
         <div class='app-wrapper-content'>
           <Routes>
-          <Route path='/dialogs/*' element={<Dialogs />} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/music' element={<Music />} />
-          <Route path='/settings' element={<Settings />} />
+            <Route path='/dialogs/*'
+              element={ () => <Dialogs 
+                state={props.state.dialogsPage} 
+              />}
+            />
+
+            <Route path='/profile'
+              element={ () => <Profile 
+                state={props.state.profilePage} 
+              />}
+            />
+
+            <Route path='/music'
+              element={<Music />}
+            />
+
+            <Route path='/settings'
+              element={<Settings />}
+            />
           </Routes>
         </div>
       </div>
-      </BrowserRouter>
+    </BrowserRouter>
   );
 }
 
