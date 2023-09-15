@@ -5,6 +5,8 @@ import Profile from './components/Profile/Profile';
 import Dialogs from './components/Dialogs/Dialogs';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
+import Sidebar from './components/Sidebar/Sidebar';
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 
@@ -18,14 +20,14 @@ const App = (props) => {
           <Routes>
             <Route path='/dialogs/*'
               element={<Dialogs 
-                dialogs={props.state.dialogs}
-                messages={props.state.messages}
+                data={props.state.dialogsPage}
               />}
             />
 
             <Route path='/profile'
               element={<Profile 
-                posts={props.state.posts} 
+                data={props.state.profilePage} 
+                addPost={props.addPost}
               />}
             />
 
@@ -36,8 +38,16 @@ const App = (props) => {
             <Route path='/settings'
               element={<Settings />}
             />
-          </Routes>
+
+          <Route path='/sidebar'
+              element={<Profile 
+                data={props.state.sidebarPage} 
+              />}
+            />
+            </Routes>
         </div>
+        
+        <Sidebar />
       </div>
     </BrowserRouter>
   );
