@@ -1,10 +1,17 @@
+let rerenderEntireTree = () => {
+  console.log('State was changed');
+};
+
 let state = {
+
   profilePage: {
     posts: [
       { id: 0, message: 'Hi, how do you do?', likecount: 10 },
       { id: 1, message: 'It`s my first post', likecount: 5 },
       { id: 2, message: 'My name is Fox', likecount: 8 }
-    ]
+    ],
+
+    newPostText: 'it-vixen'
   },
 
   dialogsPage: {
@@ -22,6 +29,8 @@ let state = {
       { id: 3, message: 'What do you do?' },
       { id: 4, message: 'Cool' }
     ],
+
+    newMessageText: 'fox'
   },
 
   sidebarPage: {
@@ -33,14 +42,24 @@ let state = {
   }
 }
 
-export let addPost = (postMessage) => {
+export const addPost = (postMessage) => {
   let newPost = {
     id: 5,
-    message: postMessage,
+    message: state.profilePage.newPostText,
     likecount: 0
   };
-
   state.profilePage.posts.push(newPost);
+  state.profilePage.newPostText = '';
+  rerenderEntireTree(state);
 }
 
+export const updateNewPostText = (newText) => {
+  state.profilePage.newPostText = newText;
+  rerenderEntireTree(state);
+}
+
+
+export const subscribe = (observer) => {
+  rerenderEntireTree = observer;
+}
 export default state;
