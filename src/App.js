@@ -3,8 +3,8 @@ import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import Dialogs from './components/Dialogs/Dialogs';
-import Music from './components/Music/Music';
-import Settings from './components/Settings/Settings';
+// import Sidebar from './components/Sidebar/Sidebar';
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 
@@ -17,14 +17,15 @@ const App = (props) => {
         <div class='app-wrapper-content'>
           <Routes>
             <Route path='/dialogs/*'
-              element={ () => <Dialogs 
-                state={props.state.dialogsPage} 
+              element={<Dialogs 
+                data={props.state.dialogsPage}
               />}
             />
 
             <Route path='/profile'
-              element={ () => <Profile 
-                state={props.state.profilePage} 
+              element={<Profile 
+                data={props.state.profilePage} 
+                dispatch={props.dispatch}
               />}
             />
 
@@ -35,8 +36,16 @@ const App = (props) => {
             <Route path='/settings'
               element={<Settings />}
             />
-          </Routes>
+
+          <Route path='/sidebar'
+              element={<Profile 
+                data={props.state.sidebarPage} 
+              />}
+            />
+            </Routes>
         </div>
+        
+        <Sidebar />
       </div>
     </BrowserRouter>
   );
